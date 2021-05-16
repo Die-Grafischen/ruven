@@ -1,0 +1,11 @@
+{
+  "name": "blanky",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "@wpackio/scripts": "^6.2.0"
+  },
+  "scripts": {
+    "bootstrap": "wpackio-scripts bootstrap"
+  }
+}
