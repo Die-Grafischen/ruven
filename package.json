@@ -1,11 +1,19 @@
 {
-  "name": "blanky",
+  "name": "ruven",
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "@wpackio/scripts": "^6.2.0"
+    "@wpackio/scripts": "^6.2.0",
+    "less": "^4.1.1",
+    "postcss": "^8.2.15"
   },
   "scripts": {
-    "bootstrap": "wpackio-scripts bootstrap"
+    "bootstrap": "wpackio-scripts bootstrap",
+    "build": "wpackio-scripts build",
+    "start": "wpackio-scripts start",
+    "archive": "wpackio-scripts pack"
+  },
+  "dependencies": {
+    "@wpackio/entrypoint": "^6.0.1"
   }
 }

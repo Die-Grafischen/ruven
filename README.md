@@ -1,4 +1,4 @@
-# Blanky
+# Ruven
 
 Blank WordPress Theme
 

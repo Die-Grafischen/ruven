@@ -7,15 +7,15 @@
  * Based on a solution in WP Rig.
  *
  * @package WordPress
- * @subpackage blanky
+ * @subpackage ruven
  * @since 1.0.0
  */
 
-if ( ! class_exists( 'blanky_Script_Loader' ) ) {
+if ( ! class_exists( 'ruven_Script_Loader' ) ) {
 	/**
 	 * A class that provides a way to add `async` or `defer` attributes to scripts.
 	 */
-	class blanky_Script_Loader {
+	class ruven_Script_Loader {
 
 		/**
 		 * Adds async/defer attributes to enqueued / registered scripts.
