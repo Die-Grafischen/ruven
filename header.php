@@ -14,41 +14,48 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 
 <html <?php language_attributes(); ?>>
 
-	<head>
+<head>
 
-		<meta charset="<?php bloginfo( 'charset' ); ?>">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" >
-		<link rel="shortcut icon" href="<?php bloginfo('template_url'); ?>/assets/images/favicon.ico" />
-		<link rel="profile" href="https://gmpg.org/xfn/11">
+    <meta charset="<?php bloginfo( 'charset' ); ?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="<?php bloginfo('template_url'); ?>/assets/images/favicon.ico" />
+    <link rel="profile" href="https://gmpg.org/xfn/11">
 
-		<?php wp_head(); ?>
+    <?php wp_head(); ?>
 
-	</head>
+</head>
 
-	<body <?php body_class(); ?>>
+<body <?php body_class(); ?>>
 
-		<header id="site-header" role="banner">
+    <div id="site-intro">
+        <h1><?php echo bloginfo('name'); ?></h1>
+        <div id="video-intro"></div>
+    </div>
 
-			<div class="header-inner section-inner">
+    <header id="site-header" role="banner">
 
-			<?php wpblank_site_logo(); ?>
+        <div class="header-inner section-inner">
 
-			<?php if ( has_nav_menu( 'primary' ) ) { ?>
-				<div id="nav-toggle" class="" aria-expanded="false">
-		             <span></span>
-		        </div>
+            <?php wpblank_site_logo(); ?>
 
-				<nav class="primary-menu-wrapper" aria-label="<?php esc_attr_e( 'Horizontal', 'wpblank' ); ?>" role="navigation">
-					<?php wp_nav_menu( array( 'container' => false, 'theme_location' => 'primary',  ) ); ?>
-				</nav>
-			<?php } ?>
+            <?php if ( has_nav_menu( 'primary' ) ) { ?>
+            <div id="nav-toggle" class="" aria-expanded="false">
+                <span></span>
+            </div>
 
-			</div><!-- .header-inner -->
+            <nav class="primary-menu-wrapper" aria-label="<?php esc_attr_e( 'Horizontal', 'wpblank' ); ?>"
+                role="navigation">
+                <?php wp_nav_menu( array( 'container' => false, 'theme_location' => 'primary',  ) ); ?>
+            </nav>
+            <?php } ?>
 
-		</header><!-- #site-header -->
+        </div><!-- .header-inner -->
 
-<div class="wrapper">
+    </header><!-- #site-header -->
+
+    <div class="wrapper">

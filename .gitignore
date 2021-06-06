@@ -32,6 +32,10 @@ Icon?
 Thumbs.db
 ._*
 
+# Vim generated files #
+######################
+*.un~
+
 # SASS #
 ##########
 **/.sass-cache
@@ -44,4 +48,21 @@ Thumbs.db
 wpcs/
 /vendor/
 
-package-lock.json
+# Bower #
+##########
+assets/bower_components/*
+
+# Codekit #
+##########
+/codekit-config.json
+*.codekit
+**.codekit-cache/*
+
+# Compiled Files and Build Dirs #
+##########
+/README.html
+
+# PhpStrom Project Files #
+.idea/
+library/vendors/composer
+assets/img/.DS_Store

@@ -1,12 +1,12 @@
 <?php
 /**
- * blanky Theme functions and definitions
+ * ruven Theme functions and definitions
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
  * @package WordPress
- * @subpackage blanky
- * @since blanky Theme 1.0
+ * @subpackage ruven
+ * @since ruven Theme 1.0
  */
 
 /**
@@ -16,7 +16,7 @@
  * runs before the init hook. The init hook is too late for some features, such
  * as indicating support for post thumbnails.
  */
-function blanky_theme_support() {
+function ruven_theme_support() {
 
 
 	/*
@@ -77,10 +77,10 @@ function blanky_theme_support() {
 	/*
 	 * Make theme available for translation.
 	 * Translations can be filed in the /languages/ directory.
-	 * If you're building a theme based on blanky Theme, use a find and replace
-	 * to change 'blanky' to the name of your theme in all the template files.
+	 * If you're building a theme based on ruven Theme, use a find and replace
+	 * to change 'ruven' to the name of your theme in all the template files.
 	 */
-	load_theme_textdomain( 'blanky' );
+	load_theme_textdomain( 'ruven' );
 
 	// Add support for full and wide align images.
 	add_theme_support( 'align-wide' );
@@ -93,12 +93,12 @@ function blanky_theme_support() {
 	 * Adds `async` and `defer` support for scripts registered or enqueued
 	 * by the theme.
 	 */
-	$loader = new blanky_Script_Loader();
+	$loader = new ruven_Script_Loader();
 	add_filter( 'script_loader_tag', array( $loader, 'filter_script_loader_tag' ), 10, 2 );
 
 }
 
-add_action( 'after_setup_theme', 'blanky_theme_support' );
+add_action( 'after_setup_theme', 'ruven_theme_support' );
 
 /**
  * REQUIRED FILES
@@ -108,56 +108,65 @@ add_action( 'after_setup_theme', 'blanky_theme_support' );
 require get_template_directory() . '/inc/template-tags.php';
 
 // Custom script loader class.
-require get_template_directory() . '/classes/class-blanky-script-loader.php';
+require get_template_directory() . '/classes/class-ruven-script-loader.php';
 
 
 /**
  * Register and Enqueue Styles.
  */
-function blanky_register_styles() {
+function ruven_register_styles() {
 
 	$theme_version = wp_get_theme()->get( 'Version' );
+	$env = ( wp_get_environment_type() === 'local') ? 'min.' : '';
 
-	wp_enqueue_style( 'blanky-style', get_stylesheet_uri() . '/assets/css/main.css', array(), $theme_version );
-	wp_style_add_data( 'blanky-style', 'rtl', 'replace' );
+	wp_enqueue_style( 'ruven-style', get_template_directory_uri() . '/assets/css/style.'. $env .'css', array(),
+	$theme_version );
+	wp_style_add_data( 'ruven-style', 'rtl', 'replace' );
 
 
 }
 
-add_action( 'wp_enqueue_scripts', 'blanky_register_styles' );
+add_action( 'wp_enqueue_scripts', 'ruven_register_styles' );
 
 /**
  * Register and Enqueue Scripts.
  */
-function blanky_register_scripts() {
+function ruven_register_scripts() {
 
 	$theme_version = wp_get_theme()->get( 'Version' );
+	$env = ( wp_get_environment_type() === 'local') ? 'min.' : '';
 
 	//Include WP jQuery
     wp_enqueue_script('jquery');
 
-	wp_enqueue_script( 'blanky-js', get_template_directory_uri() . '/assets/js/custom.js', array(), $theme_version, false );
-	wp_script_add_data( 'blanky-js', 'async', true );
+	wp_enqueue_script( 'ruven-js', get_template_directory_uri() . '/assets/js/main.'. $env .'js', array('jquery', 'ruven-vendor-js'), $theme_version, false );
+	wp_script_add_data( 'ruven-js', 'async', true );
+
+	wp_enqueue_script( 'ruven-vendor-js', get_template_directory_uri() . '/assets/js/vendor/vendor.'. $env .'js', array('jquery'), $theme_version,
+	false );
+	wp_script_add_data( 'ruven-vendor-js', 'async', true );
+
+
 
 }
 
-add_action( 'wp_enqueue_scripts', 'blanky_register_scripts' );
+add_action( 'wp_enqueue_scripts', 'ruven_register_scripts' );
 
 
 /**
  * Register navigation menus uses wp_nav_menu in five places.
  */
-function blanky_menus() {
+function ruven_menus() {
 
 	$locations = array(
-		'primary'  => __( 'Primary Menu', 'blanky' ),
-		'secondary'   => __( 'Secondary Menu', 'blanky' ),
+		'primary'  => __( 'Primary Menu', 'ruven' ),
+		'secondary'   => __( 'Secondary Menu', 'ruven' ),
 	);
 
 	register_nav_menus( $locations );
 }
 
-add_action( 'init', 'blanky_menus' );
+add_action( 'init', 'ruven_menus' );
 
 /**
  * Get the information about the logo.
@@ -166,7 +175,7 @@ add_action( 'init', 'blanky_menus' );
  *
  * @return string $html
  */
-function blanky_get_custom_logo( $html ) {
+function ruven_get_custom_logo( $html ) {
 
 	$logo_id = get_theme_mod( 'custom_logo' );
 
@@ -214,22 +223,22 @@ function blanky_get_custom_logo( $html ) {
 
 }
 
-add_filter( 'get_custom_logo', 'blanky_get_custom_logo' );
+add_filter( 'get_custom_logo', 'ruven_get_custom_logo' );
 
 /**
  * Enqueue supplemental block editor styles.
  */
-function blanky_block_editor_styles() {
+function ruven_block_editor_styles() {
 
 	// Enqueue the editor styles.
-	wp_enqueue_style( 'blanky-block-editor-styles', get_theme_file_uri( '/assets/css/editor-style-block.css' ), array(), wp_get_theme()->get( 'Version' ), 'all' );
-	wp_style_add_data( 'blanky-block-editor-styles', 'rtl', 'replace' );
+	wp_enqueue_style( 'ruven-block-editor-styles', get_theme_file_uri( '/assets/css/editor-style-block.css' ), array(), wp_get_theme()->get( 'Version' ), 'all' );
+	wp_style_add_data( 'ruven-block-editor-styles', 'rtl', 'replace' );
 
 	// Enqueue the editor script.
-	wp_enqueue_script( 'blanky-block-editor-script', get_theme_file_uri( '/assets/js/editor-script-block.js' ), array( 'wp-blocks', 'wp-dom' ), wp_get_theme()->get( 'Version' ), true );
+	wp_enqueue_script( 'ruven-block-editor-script', get_theme_file_uri( '/assets/js/editor-script-block.js' ), array( 'wp-blocks', 'wp-dom' ), wp_get_theme()->get( 'Version' ), true );
 }
 
-add_action( 'enqueue_block_editor_assets', 'blanky_block_editor_styles', 1, 1 );
+add_action( 'enqueue_block_editor_assets', 'ruven_block_editor_styles', 1, 1 );
 
 
 // Allow the Editor Role to change Theme Settings and use Customizer
@@ -240,4 +249,50 @@ $role_object->add_cap( 'edit_theme_options' );
 // Advanced Custom Fields
 if (class_exists('ACF')) {
 	require get_template_directory() . '/inc/acf.php';
+}
+
+function revcon_change_post_label() {
+	global $menu;
+	global $submenu;
+	$menu[5][0] = 'Portfolio';
+	$submenu['edit.php'][5][0] = 'Portfolio';
+	$submenu['edit.php'][10][0] = 'Add Portfolio Item';
+	$submenu['edit.php'][16][0] = 'Portfolio Tags';
+}
+function revcon_change_post_object() {
+	global $wp_post_types;
+	$labels = &$wp_post_types['post']->labels;
+	$labels->name = 'Portfolio';
+	$labels->singular_name = 'Portfolio';
+	$labels->add_new = 'Add Portfolio';
+	$labels->add_new_item = 'Add Portfolio';
+	$labels->edit_item = 'Edit Portfolio';
+	$labels->new_item = 'Portfolio';
+	$labels->view_item = 'View Portfolio';
+	$labels->search_items = 'Search Portfolio';
+	$labels->not_found = 'No Portfolio found';
+	$labels->not_found_in_trash = 'No Portfolio found in Trash';
+	$labels->all_items = 'All Portfolio';
+	$labels->menu_name = 'Portfolio';
+	$labels->name_admin_bar = 'Portfolio';
+}
+
+add_action( 'admin_menu', 'revcon_change_post_label' );
+add_action( 'init', 'revcon_change_post_object' );
+
+
+//Add Thumbnail to post list in admin colums
+add_filter('manage_posts_columns', 'add_img_column');
+add_filter('manage_posts_custom_column', 'manage_img_column', 10, 2);
+
+function add_img_column($columns) {
+	$columns['img'] = 'Featured Image';
+	return $columns;
+}
+
+function manage_img_column($column_name, $post_id) {
+	if( $column_name == 'img' ) {
+		echo get_the_post_thumbnail($post_id, 'thumbnail');
+	}
+	return $column_name;
 }

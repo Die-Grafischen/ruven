@@ -1,0 +1,60 @@
+header#site-header {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1000;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	width: auto;
+	height: 100%;
+	background-color: $c2;
+	writing-mode: tb-rl;
+
+	.header-inner {
+		width: 100%;
+		height: 100%;
+		padding: 20px 10px;
+		display: flex;
+		flex-wrap: nowrap;
+		align-items: center;
+
+		.site-title {
+			font-weight: normal;
+			margin-bottom: 6vh;
+			font-size: $font-size-big;
+		}
+
+		#nav-toggle {
+			display: none;
+		}
+
+		nav.primary-menu-wrapper {
+			ul {
+				float: left;
+
+				li {
+					float: left;
+					margin-top: 20px;
+					font-size: $font-size-big;
+
+					a {
+						border-left: 3px solid transparent;
+						&:hover {
+							text-decoration: underline;
+						}
+					}
+
+					&.current_page_item {
+						a {
+							text-decoration: underline;
+						}
+					}
+				}
+			}
+		}
+	}
+}

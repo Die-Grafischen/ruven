@@ -1,0 +1,71 @@
+/**
+ * Base SCSS
+ */
+
+body {
+	opacity: 1;
+	font-family: $font-primary;
+	color: $c1;
+	font-size: $font-size-default;
+}
+
+a {
+	color: $c1;
+	text-decoration: none;
+	&:hover {
+		text-decoration: none;
+		color: $c1;
+	}
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+	font-size: $font-size-big;
+	margin: 0;
+}
+
+.wrapper {
+	width: calc(100% - 54px);
+	margin-left: 54px;
+}
+
+footer,
+#site-intro {
+	display: none;
+}
+
+.projects {
+	padding: 10px 0;
+	margin-left: -10px;
+}
+
+.project {
+	float: left;
+	padding: 10px;
+	cursor: pointer;
+	transition: all 0.3s linear;
+	> img {
+		height: 30vh;
+		width: auto;
+		box-shadow: 6px 6px 10px -3px rgba(0, 0, 0, 0.35);
+		transition: all 0.1s linear;
+	}
+
+	&:hover > img {
+		box-shadow: 6px 6px 10px -3px rgba(0, 0, 0, 0.6);
+	}
+}
+
+#sort-button {
+	position: fixed;
+	right: 20px;
+	top: calc(50% - 20px);
+	background: url("../img/sort.png") center center / contain no-repeat;
+	cursor: pointer;
+	width: 40px;
+	height: 40px;
+	z-index: 100;
+}
