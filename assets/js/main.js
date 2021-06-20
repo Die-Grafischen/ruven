@@ -30,4 +30,20 @@ jQuery(document).ready(function ($) {
       }
     });
   }
+
+  $(".projects").on("click", ".project", function () {
+    $("body").toggleClass("active-project");
+  });
+  var swiper = new Swiper(".swiper-container", {
+    // Optional parameters
+    // If we need pagination
+    pagination: {
+      el: ".swiper-pagination"
+    },
+    // Navigation arrows
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev"
+    }
+  });
 });

@@ -139,12 +139,17 @@ function ruven_register_scripts() {
 	//Include WP jQuery
     wp_enqueue_script('jquery');
 
-	wp_enqueue_script( 'ruven-js', get_template_directory_uri() . '/assets/js/main.'. $env .'js', array('jquery', 'ruven-vendor-js'), $theme_version, false );
-	wp_script_add_data( 'ruven-js', 'async', true );
-
-	wp_enqueue_script( 'ruven-vendor-js', get_template_directory_uri() . '/assets/js/vendor/vendor.'. $env .'js', array('jquery'), $theme_version,
+	wp_enqueue_script( 'ruven-isotope', get_template_directory_uri() . '/assets/js/vendor/isotope.min.js', array('jquery'), $theme_version,
 	false );
-	wp_script_add_data( 'ruven-vendor-js', 'async', true );
+	wp_script_add_data( 'ruven-isotope', 'async', true );
+
+	wp_enqueue_script( 'ruven-swiper', get_template_directory_uri() . '/assets/js/vendor/swiper.min.js',
+	array('jquery'), $theme_version,
+	false );
+	wp_script_add_data( 'ruven-swiper', 'async', true );
+
+	wp_enqueue_script( 'ruven', get_template_directory_uri() . '/assets/js/main.'. $env .'js', array('jquery', 'ruven-isotope', 'ruven-swiper'), $theme_version, false );
+	wp_script_add_data( 'ruven', 'async', true );
 
 
 

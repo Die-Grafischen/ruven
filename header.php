@@ -30,12 +30,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 </head>
 
-<body <?php body_class(); ?>>
+<body <?php body_class('active-intro'); ?>>
+
+    <?php $video = true; ?>
 
     <div id="site-intro">
         <h1><?php echo bloginfo('name'); ?></h1>
         <div id="video-intro"></div>
     </div>
+
+    <?php if($video) { ?>
+    <div id="video-intro">
+        <video width="100%" height="100%" controls>
+            <source src="<?php echo get_template_directory_uri(); ?>/assets/img/video.mp4" type="video/mp4">
+            <!-- <source src="video.ogg" type="video/ogg"> -->
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <?php } ?>
 
     <header id="site-header" role="banner">
 
