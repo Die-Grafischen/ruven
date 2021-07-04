@@ -86,8 +86,10 @@ footer {
 	top: 0;
 	left: 0;
 	background-color: $c2;
-	z-index: 9999;
+	z-index: 100;
 	overflow: hidden;
+	transition: all 0.4s linear;
+	display: none;
 
 	h1 {
 		font-size: 100px;
@@ -99,11 +101,45 @@ footer {
 	}
 }
 
+#video-intro {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index: 50;
+	top: 0;
+	left: 0;
+	transition: top 0.3s ease-in-out;
+}
+
+#ruven-app {
+	opacity: 0;
+	transition: opacity 0.2s linear;
+}
+
 body {
 	&.active-intro #site-intro {
+		display: block;
 	}
 
 	&.active-project #project-detail {
 		left: 0;
+	}
+
+	&.active-intro,
+	&.active-video {
+		#site-header,
+		#site-footer,
+		.wrapper {
+			display: none;
+		}
+	}
+
+	&.app-loaded {
+		#video-intro {
+			top: -110vh;
+		}
+		#ruven-app {
+			opacity: 1;
+		}
 	}
 }

@@ -18,29 +18,30 @@
 
 ?>
 </div><!-- .wrapper -->
-		<footer id="site-footer" role="contentinfo">
+<footer id="site-footer" role="contentinfo">
 
-			<div class="section-inner">
+    <div class="section-inner">
 
-				<div class="footer-credits">
+        <div class="footer-credits">
 
-					<p class="footer-copyright">&copy;
-						<?php
-						echo date_i18n(
-							/* translators: Copyright date format, see https://www.php.net/date */
-							_x( 'Y', 'copyright date format', 'wpblank' )
-						);
-						?>
-						<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php bloginfo( 'name' ); ?></a>
-					</p><!-- .footer-copyright -->
+            <p class="footer-copyright">&copy;
+                <?php
+								echo date_i18n(
+									/* translators: Copyright date format, see https://www.php.net/date */
+									_x( 'Y', 'copyright date format', 'wpblank' )
+								);
+								?>
+                <a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php bloginfo( 'name' ); ?></a>
+            </p><!-- .footer-copyright -->
 
-				</div><!-- .footer-credits -->
+        </div><!-- .footer-credits -->
 
-			</div><!-- .section-inner -->
+    </div><!-- .section-inner -->
 
-		</footer><!-- #site-footer -->
+</footer><!-- #site-footer -->
 
-		<?php wp_footer(); ?>
+<?php wp_footer(); ?>
+</main>
+</body>
 
-	</body>
 </html>
