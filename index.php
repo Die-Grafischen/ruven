@@ -14,16 +14,31 @@
         if(has_post_thumbnail()){
             $fields = get_fields();
             $content = $fields['content'];
-            $bild = isset($content['bild']) ? $content['bild'] : false;
-            $text = isset($content['text']) ? $content['text']: false;
             $gallery_post = isset($content[1]) ? true : false;
 
             $thispost = get_post($id);
             $menu_order = $thispost->menu_order;
+            do_action('qm/debug', $content);
             
             echo '<div class="project" data-custom="'. esc_attr($menu_order) .'" data-default="'. esc_attr($count) .'">';
                 the_post_thumbnail();
-               
+                echo '<div class="single-project swiper-wrapper" data-id="'. esc_attr($count) .'">';
+                foreach($content as $slide) {
+                    echo '<div class="swiper-slide">';
+                        if($slide['bild']) {
+                            echo '<div class="slide-img">'.
+                                wp_get_attachment_image($slide['bild'])
+                            .'</div>';
+                        }
+
+                        if($slide['text']) {
+                            echo '<div class="slide-text">'. 
+                                wp_kses_post($slide['text'])
+                            .'</div>';
+                        }
+                    echo '</div>';
+                }
+                echo '</div>';
             echo '</div>';
             $count++;
         }
@@ -37,13 +52,7 @@
     <!-- Slider main container -->
     <div class="swiper-container">
         <!-- Additional required wrapper -->
-        <div class="swiper-wrapper">
-            <!-- Slides -->
-            <div class="swiper-slide">Slide 1</div>
-            <div class="swiper-slide">Slide 2</div>
-            <div class="swiper-slide">Slide 3</div>
-            ...
-        </div>
+
         <!-- If we need pagination -->
         <div class="swiper-pagination"></div>
 

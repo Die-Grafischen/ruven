@@ -116,6 +116,10 @@ footer {
 	transition: opacity 0.2s linear;
 }
 
+.single-project {
+	display: none;
+}
+
 body {
 	&.active-intro #site-intro {
 		display: block;

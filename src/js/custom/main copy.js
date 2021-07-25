@@ -30,90 +30,87 @@ jQuery(document).ready(function ($) {
 		static body = $("body");
 
 		// Default Settings
-		introText = false;
-		introVideo = false;
+		introText = true;
+		introVideo = true;
 		initialized = false;
-
-		introTextDuration = 6000;
+		introTextDuration = this.introText ? 3000 : 0;
 
 		constructor() {
+			this.intro();
+			this.video();
 			this.init();
 		}
 
-		init() {
-			this.intro();
-			this.video();
-			this.main();
-		}
-
-		// Loads intro text/logo
+		// Loads intro text
 		intro() {
-			if ($("#site-intro").length) {
-				console.log("START: intro");
+			if ($("#site-intro").length && this.introText && !this.initialized) {
+				console.log("intro");
 				const self = this;
 
 				RuvenCore.body.addClass("active-intro");
 
-				const introTimer = setTimeout(function () {
-					console.log("ENDED: intro");
+				setTimeout(function () {
+					console.log("intro ended");
 					$("#site-intro").fadeOut(function () {
 						$("body").removeClass("active-intro");
-						self.introText = true;
+						self.introText = false;
 						self.video();
 					});
 				}, this.introTextDuration);
-				$("#site-intro").data("introtimer", introTimer);
 
 				$("#site-intro").on("click", function () {
-					console.log("ENDED: intro on click");
-
-					//remove the settimeout function
-					const introTimer = $("#site-intro").data("introtimer");
-					if (introTimer) {
-						clearTimeout(introTimer);
-						$("#site-intro").removeData("introtimer");
-					}
+					console.log("intro ended on click");
 					$("#site-intro").fadeOut(function () {
 						$("body").removeClass("active-intro");
-						self.introText = true;
+						self.introText = false;
 						self.video();
 					});
 				});
 			}
 		}
 
-		// Loads video intro
+		// Loads video
 		video() {
-			if ($("#video-intro").length && this.introText) {
-				this.introVideo = true;
-				console.log("STARTED: video");
+			console.log(this.introVideo);
+			console.log(this.introText);
+			if ($("#video-intro").length && !this.introText && !this.initialized) {
+				this.introVideo = false;
 				const self = this;
 				const video = $("#ruven-video");
 				RuvenCore.body.addClass("active-video");
 
-				console.log("video is playing");
-				video.get(0).play();
+				if (!$("#site-intro").length) {
+					this.introTextDuration = 0;
+				}
+
+				setTimeout(function () {
+					console.log("video");
+					video.get(0).play();
+				}, this.introTextDuration);
 
 				video.parent().on("click", function () {
-					console.log("ENDED: video on click");
-					video.get(0).pause();
+					console.log("video ended on click");
 					RuvenCore.body.removeClass("active-video");
-					self.main();
+					self.init();
+					return;
 				});
 
 				video.on("ended", function () {
 					console.log("video ended");
 					RuvenCore.body.removeClass("active-video");
-					self.main();
+					self.init();
 				});
 			}
 		}
 
 		// Loads the app conainer
-		main() {
+		init() {
+			console.log("init?");
+			console.log(this.introVideo);
+			console.log(this.introText);
 			const self = this;
-			if (this.introVideo && this.introText) {
-				console.log("MAIN: initialized");
+			if (!this.introVideo && !this.introText) {
+				console.log("init");
 				RuvenCore.body.addClass("app-loaded");
 				this.initialized = true;
 				this.projects();
@@ -121,8 +118,10 @@ jQuery(document).ready(function ($) {
 		}
 
 		projects() {
+			console.log("projects");
+
 			if ($(".projects").length) {
-				console.log("PROJECTS:");
+				console.log("projects");
 				const projects = new RuvenIsotope();
 			}
 		}
@@ -139,7 +138,7 @@ jQuery(document).ready(function ($) {
 
 		isotope() {
 			if ($(".projects").length) {
-				console.log("ISOTOPE: loaded");
+				console.log("projects");
 				RuvenIsotope.projects = $(".projects").isotope({
 					itemSelector: ".project",
 					layoutMode: "fitRows",
@@ -177,31 +176,27 @@ jQuery(document).ready(function ($) {
 
 	class RuvenSlider {
 		constructor(slider) {
-			this.init(slider);
-		}
-
-		init(slider) {
 			console.log(slider);
 		}
-		initSlider() {
-			const swiper = new Swiper(".swiper-container", {
-				// Optional parameters
-				// If we need pagination
-				pagination: {
-					el: ".swiper-pagination",
-				},
-				// Navigation arrows
-				navigation: {
-					nextEl: ".swiper-button-next",
-					prevEl: ".swiper-button-prev",
-				},
-			});
-		}
+
+		swiper = new Swiper(".swiper-container", {
+			// Optional parameters
+			// If we need pagination
+			pagination: {
+				el: ".swiper-pagination",
+			},
+			// Navigation arrows
+			navigation: {
+				nextEl: ".swiper-button-next",
+				prevEl: ".swiper-button-prev",
+			},
+		});
 	}
 
 	// Document Ready
 	$(document).ready(function () {
 		const ruven = new RuvenCore();
+		//const ruvenSlider = new RuvenSlider();
 	});
 
 	// Window Load

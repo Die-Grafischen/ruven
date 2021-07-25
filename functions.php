@@ -134,7 +134,7 @@ add_action( 'wp_enqueue_scripts', 'ruven_register_styles' );
 function ruven_register_scripts() {
 
 	$theme_version = wp_get_theme()->get( 'Version' );
-	$env = ( wp_get_environment_type() === 'local') ? 'min.' : '';
+	$env = ( wp_get_environment_type() === 'local') ? array('src','/custom', '') : array('assets','','.min');
 
 	//Include WP jQuery
     wp_enqueue_script('jquery');
@@ -148,7 +148,8 @@ function ruven_register_scripts() {
 	false );
 	wp_script_add_data( 'ruven-swiper', 'async', true );
 
-	wp_enqueue_script( 'ruven', get_template_directory_uri() . '/assets/js/main.'. $env .'js', array('jquery', 'ruven-isotope', 'ruven-swiper'), $theme_version, false );
+	wp_enqueue_script( 'ruven', get_template_directory_uri() . '/'. $env[0] .'/js'. $env[1] .'/main.'. $env[2] .'js', array('jquery',
+	'ruven-isotope', 'ruven-swiper'), $theme_version, false );
 	wp_script_add_data( 'ruven', 'async', true );
 
 
