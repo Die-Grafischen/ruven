@@ -120,6 +120,8 @@ jQuery(document).ready(function ($) {
 			}
 		}
 
+		tester() {}
+
 		projects() {
 			if ($(".projects").length) {
 				console.log("PROJECTS:");

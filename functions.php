@@ -134,7 +134,8 @@ add_action( 'wp_enqueue_scripts', 'ruven_register_styles' );
 function ruven_register_scripts() {
 
 	$theme_version = wp_get_theme()->get( 'Version' );
-	$env = ( wp_get_environment_type() === 'local') ? array('src','/custom', '') : array('assets','','min.');
+	//$env = ( wp_get_environment_type() === 'local') ? array('src','/custom', '') : array('assets','','min.');
+	$env = array('src','/custom', '');
 
 	//Include WP jQuery
     wp_enqueue_script('jquery');

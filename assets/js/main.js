@@ -385,6 +385,9 @@ jQuery(document).ready(function ($) {// $(".projects").on("click", ".project", f
         }
       }
     }, {
+      key: "tester",
+      value: function tester() {}
+    }, {
       key: "projects",
       value: function projects() {
         if ($(".projects").length) {
