@@ -444,6 +444,7 @@ jQuery(document).ready(function ($) {// $(".projects").on("click", ".project", f
       key: "openProject",
       value: function openProject() {
         RuvenIsotope.container.on("click", ".project", function () {
+          console.log("project opened!");
           RuvenCore.body.toggleClass("active-project");
           var slider = new RuvenSlider(this);
         });

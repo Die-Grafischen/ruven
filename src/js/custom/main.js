@@ -169,6 +169,7 @@ jQuery(document).ready(function ($) {
 
 		openProject() {
 			RuvenIsotope.container.on("click", ".project", function () {
+				console.log("project opened!");
 				RuvenCore.body.toggleClass("active-project");
 				const slider = new RuvenSlider(this);
 			});
