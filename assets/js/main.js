@@ -299,7 +299,7 @@ jQuery(document).ready(function ($) {// $(".projects").on("click", ".project", f
 
       _defineProperty(this, "initialized", false);
 
-      _defineProperty(this, "introTextDuration", 6000);
+      _defineProperty(this, "introTextDuration", 3000);
 
       this.init();
     }
@@ -468,6 +468,11 @@ jQuery(document).ready(function ($) {// $(".projects").on("click", ".project", f
       key: "init",
       value: function init(slider) {
         console.log(slider);
+      }
+    }, {
+      key: "moveProject",
+      value: function moveProject(slider) {
+        slider.prepend("#project-detail .swiper-container");
       }
     }, {
       key: "initSlider",

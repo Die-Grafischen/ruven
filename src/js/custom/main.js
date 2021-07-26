@@ -34,7 +34,7 @@ jQuery(document).ready(function ($) {
 		introVideo = false;
 		initialized = false;
 
-		introTextDuration = 6000;
+		introTextDuration = 3000;
 
 		constructor() {
 			this.init();
@@ -182,6 +182,10 @@ jQuery(document).ready(function ($) {
 
 		init(slider) {
 			console.log(slider);
+		}
+
+		moveProject(slider) {
+			slider.prepend("#project-detail .swiper-container");
 		}
 		initSlider() {
 			const swiper = new Swiper(".swiper-container", {
