@@ -179,6 +179,7 @@ footer{display:none}
 #ruven-app{opacity:0;-webkit-transition:opacity .2s linear;transition:opacity .2s linear}
 .single-project{display:none}
 #project-detail .single-project{display:block;height:100%}
+.swiper-container{height:100vh}
 .swiper-slide{width:100%;height:100%}
 .swiper-slide .slide-img{width:100%}
 .swiper-slide .slide-text{width:100%}
