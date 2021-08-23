@@ -178,6 +178,10 @@ footer{display:none}
 #video-intro{width:100%;height:100%;position:absolute;z-index:50;top:0;left:0;-webkit-transition:top .3s ease-in-out;transition:top .3s ease-in-out}
 #ruven-app{opacity:0;-webkit-transition:opacity .2s linear;transition:opacity .2s linear}
 .single-project{display:none}
+#project-detail .single-project{display:block;height:100%}
+.swiper-slide{width:100%;height:100%}
+.swiper-slide .slide-img{width:100%}
+.swiper-slide .slide-text{width:100%}
 body.active-intro #site-intro{display:block}
 body.active-project #project-detail{left:0}
 body.active-intro #site-header,body.active-intro #site-footer,body.active-intro .wrapper,body.active-video #site-header,body.active-video #site-footer,body.active-video .wrapper{display:none}

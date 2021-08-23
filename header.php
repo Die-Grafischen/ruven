@@ -32,12 +32,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <body <?php body_class(); ?>>
 
-    <?php $video = true; ?>
+    <?php   
+        $site_intro = false;
+        $video = false; 
+    ?>
 
+    <?php if($site_intro) { ?>
     <div id="site-intro">
         <h1><?php echo bloginfo('name'); ?></h1>
-        <div id="video-intro"></div>
     </div>
+    <?php } ?>
 
     <?php if($video) { ?>
     <div id="video-intro">

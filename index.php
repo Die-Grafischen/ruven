@@ -27,7 +27,7 @@
                     echo '<div class="swiper-slide">';
                         if($slide['bild']) {
                             echo '<div class="slide-img">'.
-                                wp_get_attachment_image($slide['bild'])
+                                wp_get_attachment_image($slide['bild'], 'full')
                             .'</div>';
                         }
 

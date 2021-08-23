@@ -30,8 +30,8 @@ jQuery(document).ready(function ($) {
 		static body = $("body");
 
 		// Default Settings
-		introText = false;
-		introVideo = false;
+		introText = true;
+		introVideo = true;
 		initialized = false;
 
 		introTextDuration = 3000;
@@ -41,14 +41,22 @@ jQuery(document).ready(function ($) {
 		}
 
 		init() {
+			this.checkElements();
 			this.intro();
 			this.video();
-			this.main();
+			//this.main();
+		}
+
+		// Check if elements exists
+		checkElements() {
+			this.introText = $("#site-intro").length ? true : false;
+			this.introVideo = $("#video-intro").length ? true : false;
+			if (!this.introText && !this.introVideo) this.main();
 		}
 
 		// Loads intro text/logo
 		intro() {
-			if ($("#site-intro").length) {
+			if (this.introText) {
 				console.log("START: intro");
 				const self = this;
 
@@ -58,8 +66,9 @@ jQuery(document).ready(function ($) {
 					console.log("ENDED: intro");
 					$("#site-intro").fadeOut(function () {
 						$("body").removeClass("active-intro");
-						self.introText = true;
+						self.introText = false;
 						self.video();
+						self.main();
 					});
 				}, this.introTextDuration);
 				$("#site-intro").data("introtimer", introTimer);
@@ -75,8 +84,9 @@ jQuery(document).ready(function ($) {
 					}
 					$("#site-intro").fadeOut(function () {
 						$("body").removeClass("active-intro");
-						self.introText = true;
+						self.introText = false;
 						self.video();
+						self.main();
 					});
 				});
 			}
@@ -84,8 +94,8 @@ jQuery(document).ready(function ($) {
 
 		// Loads video intro
 		video() {
-			if ($("#video-intro").length && this.introText) {
-				this.introVideo = true;
+			if (this.introVideo && !this.introText) {
+				this.introVideo = false;
 				console.log("STARTED: video");
 				const self = this;
 				const video = $("#ruven-video");
@@ -111,8 +121,9 @@ jQuery(document).ready(function ($) {
 
 		// Loads the app conainer
 		main() {
+			console.log(this.introText, this.introVideo);
 			const self = this;
-			if (this.introVideo && this.introText) {
+			if (!this.introText && !this.introVideo) {
 				console.log("MAIN: initialized");
 				RuvenCore.body.addClass("app-loaded");
 				this.initialized = true;
@@ -173,7 +184,8 @@ jQuery(document).ready(function ($) {
 			RuvenIsotope.container.on("click", ".project", function () {
 				console.log("project opened!");
 				RuvenCore.body.toggleClass("active-project");
-				const slider = new RuvenSlider(this);
+				const sliderContent = $(this).find(".single-project");
+				const slider = new RuvenSlider(sliderContent);
 			});
 		}
 	}
@@ -181,6 +193,8 @@ jQuery(document).ready(function ($) {
 	class RuvenSlider {
 		constructor(slider) {
 			this.init(slider);
+			this.moveProject(slider);
+			this.initSlider();
 		}
 
 		init(slider) {
@@ -188,8 +202,9 @@ jQuery(document).ready(function ($) {
 		}
 
 		moveProject(slider) {
-			slider.prepend("#project-detail .swiper-container");
+			$("#project-detail .swiper-container").prepend(slider);
 		}
+
 		initSlider() {
 			const swiper = new Swiper(".swiper-container", {
 				// Optional parameters
